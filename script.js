@@ -9,6 +9,11 @@ async function fetchGLDPrice() {
   const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=GLD&apikey=${ALPHA_KEY}`;
   const response = await fetch(url);
   const data = await response.json();
+
+  if (!data["Global Quote"] || !data["Global Quote"]["05. price"]) {
+    throw new Error("GLD price not available from Alpha Vantage");
+  }
+
   return parseFloat(data["Global Quote"]["05. price"]);
 }
 
