@@ -1,24 +1,53 @@
-<div class="card mt-4">
-  <h2 class="text-lg font-bold mb-2">Live Commodities Arbitrage</h2>
-  <div class="space-y-2 text-sm">
-    <p>🪙 Gold Spot Price: <span id="goldSpot">Loading...</span></p>
-    <p>📈 GLD ETF Price: <span id="gldPrice">Loading...</span></p>
-    <p>💰 Gold Arbitrage: <span id="goldArb">Calculating...</span></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Commodities Arbitrage</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 2rem;
+      color: #333;
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    .commodity {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .label {
+      font-weight: bold;
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Commodities Arbitrage Dashboard</h1>
 
-    <hr class="my-2" />
-
-    <p>🥈 Silver Spot Price: <span id="silverSpot">Loading...</span></p>
-    <p>📈 SLV ETF Price: <span id="slvPrice">Loading...</span></p>
-    <p>💰 Silver Arbitrage: <span id="silverArb">Calculating...</span></p>
-
-    <hr class="my-2" />
-
-    <p>🛢️ Oil Spot Price: <span id="oilSpot">Loading...</span></p>
-    <p>📈 USO ETF Price: <span id="usoPrice">Loading...</span></p>
-    <p>💰 Oil Arbitrage: <span id="oilArb">Calculating...</span></p>
+  <div class="commodity">
+    <span class="label">Gold:</span>
+    <span id="goldPrice">Loading...</span>
   </div>
-</div>
 
-    <script src="script.js"></script>
+  <div class="commodity">
+    <span class="label">Silver:</span>
+    <span id="silverPrice">Loading...</span>
+  </div>
+
+  <div class="commodity">
+    <span class="label">Oil:</span>
+    <span id="oilPrice">Loading...</span>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
