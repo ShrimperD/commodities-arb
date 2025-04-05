@@ -1,48 +1,37 @@
 async function fetchPrices() {
-  const spotEl = document.getElementById('spotPrice');
-  const etfEl = document.getElementById('etfPrice');
-  const arbEl = document.getElementById('arbResult');
-
-  spotEl.textContent = 'Loading...';
-  etfEl.textContent = 'Loading...';
-  arbEl.textContent = 'Checking...';
+  const spotPriceEl = document.getElementById('spotPrice');
+  const etfPriceEl = document.getElementById('etfPrice');
+  const arbResultEl = document.getElementById('arbResult');
 
   try {
-    // ✅ Gold Spot Price (using Metals API via exchangerate.host)
-    const metalRes = await fetch('https://api.exchangerate.host/latest?base=XAU&symbols=USD');
-    const metalData = await metalRes.json();
-    const goldSpot = 1 / metalData.rates.USD; // Convert USD per XAU to XAU per USD
-    spotEl.textContent = `$${goldSpot.toFixed(2)} (per oz)`;
+    // Replace with real API endpoints if needed
+    const goldSpotPrice = 2320.15; // Example: from goldprice.org or metals-api.com
+    const gldEtfPrice = 214.67;     // Example: from Alpha Vantage or Yahoo Finance
 
-    // ✅ GLD ETF Price (via Yahoo Finance)
-    const proxyUrl = 'https://api.allorigins.win/get?url=';
-    const yahooUrl = encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/GLD');
-    const etfRes = await fetch(`${proxyUrl}${yahooUrl}`);
-    const etfJson = await etfRes.json();
-    const etfData = JSON.parse(etfJson.contents);
-    const etfPrice = etfData.chart.result[0].meta.regularMarketPrice;
-    etfEl.textContent = `$${etfPrice.toFixed(2)} (GLD ETF)`;
+    // Update UI
+    spotPriceEl.textContent = `$${goldSpotPrice.toFixed(2)}`;
+    etfPriceEl.textContent = `$${gldEtfPrice.toFixed(2)}`;
 
-    // ✅ Check for arbitrage opportunity
-    const fairValue = goldSpot * 0.1; // 1/10 oz of gold ≈ 1 GLD share
-    const diff = etfPrice - fairValue;
-    const percent = (diff / fairValue) * 100;
+    // 1 GLD ≈ 1/10 oz gold
+    const goldPerGLD = goldSpotPrice / 10;
+
+    const diff = goldPerGLD - gldEtfPrice;
+    const percent = ((diff / gldEtfPrice) * 100).toFixed(2);
 
     if (Math.abs(percent) < 0.5) {
-      arbEl.textContent = `No strong arbitrage. GLD is close to spot value.`;
-    } else if (percent > 0) {
-      arbEl.textContent = `📉 GLD is overpriced by ${percent.toFixed(2)}%. Consider shorting.`;
+      arbResultEl.textContent = `📉 No arbitrage opportunity right now.`;
+      arbResultEl.style.color = '#6b7280'; // gray
     } else {
-      arbEl.textContent = `📈 GLD is underpriced by ${Math.abs(percent).toFixed(2)}%. Consider buying.`;
+      arbResultEl.textContent = `💸 Arbitrage Detected: ${percent}%`;
+      arbResultEl.style.color = percent > 0 ? '#10b981' : '#ef4444'; // green or red
     }
 
-  } catch (err) {
-    spotEl.textContent = 'Error';
-    etfEl.textContent = 'Error';
-    arbEl.textContent = `Error: ${err.message}`;
-    console.error('Error fetching prices:', err);
+  } catch (error) {
+    arbResultEl.textContent = '❌ Error fetching prices';
+    arbResultEl.style.color = 'red';
+    console.error(error);
   }
 }
 
-// Auto fetch on page load
 fetchPrices();
+setInterval(fetchPrices, 60000); // Update every 60 seconds
