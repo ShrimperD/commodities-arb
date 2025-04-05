@@ -3,25 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Commodities Arbitrage</title>
+  <title>Commodities Arbitrage Tracker</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>🪙 Commodities Arbitrage Tracker</h1>
-    
+  <div class="max-w-5xl">
     <div class="card">
-      <h2>Live Prices</h2>
-      <p><strong>Gold Spot Price:</strong> <span id="spotPrice">Loading...</span></p>
-      <p><strong>GLD ETF Price:</strong> <span id="etfPrice">Loading...</span></p>
+      <h1 class="text-lg font-bold">🪙 Commodities Arbitrage Tracker</h1>
+      <p class="text-sm text-gray-500 mt-1">Track price differences between physical gold and the GLD ETF to find arbitrage opportunities.</p>
     </div>
 
     <div class="card">
-      <h2>Arbitrage Opportunity</h2>
-      <p id="arbResult">Checking...</p>
+      <h2 class="text-lg font-bold">📊 Live Prices</h2>
+      <div class="mt-2">
+        <div class="flex justify-between">
+          <strong>Gold Spot Price:</strong>
+          <span id="spotPrice">$0.00</span>
+        </div>
+        <div class="flex justify-between mt-1">
+          <strong>GLD ETF Price:</strong>
+          <span id="etfPrice">$0.00</span>
+        </div>
+        <div class="mt-2 text-green-500 font-bold" id="arbResult">Checking...</div>
+      </div>
     </div>
 
-    <button onclick="fetchPrices()">🔄 Refresh Prices</button>
+    <div class="card">
+      <h2 class="text-lg font-bold">ℹ️ What Is This?</h2>
+      <p class="text-sm text-gray-500 mt-1">
+        This tool compares the gold spot price with the GLD ETF price (which roughly represents 1/10th oz of gold).
+        If there's a significant price gap, it may indicate a short-term arbitrage opportunity to exploit.
+      </p>
+    </div>
   </div>
 
   <script src="script.js"></script>
