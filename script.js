@@ -1,5 +1,5 @@
-const ALPHA_KEY = 'P3NW500T36QX49GH';   // ✅ Your real Alpha Vantage key
-const METALS_KEY = 'YOUR_METALS_API_KEY';  // 🔁 Replace this when you get the key
+const ALPHA_KEY = 'P3NW500T36QX49GH'; // Your Alpha Vantage API key
+const GOLD_API_KEY = 'goldapi-txt8sm94nh9y9-io'; // Your GoldAPI.io key
 
 const spotPriceEl = document.getElementById('spotPrice');
 const etfPriceEl = document.getElementById('etfPrice');
@@ -13,10 +13,17 @@ async function fetchGLDPrice() {
 }
 
 async function fetchGoldSpotPrice() {
-  const url = `https://metals-api.com/api/latest?access_key=${METALS_KEY}&base=USD&symbols=XAU`;
-  const response = await fetch(url);
+  const url = 'https://www.goldapi.io/api/XAU/USD';
+
+  const response = await fetch(url, {
+    headers: {
+      'x-access-token': GOLD_API_KEY,
+      'Content-Type': 'application/json'
+    }
+  });
+
   const data = await response.json();
-  return 1 / data.rates.XAU;
+  return parseFloat(data.price); // Gold spot price in USD per ounce
 }
 
 async function fetchPrices() {
