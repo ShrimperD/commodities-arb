@@ -1,50 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Commodities Arbitrage Tracker</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="max-w-5xl">
-    <div class="card">
-      <h1 class="text-lg font-bold">🪙 Commodities Arbitrage Tracker</h1>
-      <p class="text-sm text-gray-500 mt-1">Track price differences between physical gold and the GLD ETF to find arbitrage opportunities.</p>
-    </div>
-
-    <div class="card">
-      <h2 class="text-lg font-bold">📊 Live Prices</h2>
-      <div class="mt-2">
-        <div class="flex justify-between">
-          <strong>Gold Spot Price:</strong>
-          <span id="spotPrice">$0.00</span>
-        </div>
-        <div class="flex justify-between mt-1">
-          <strong>GLD ETF Price:</strong>
-          <span id="etfPrice">$0.00</span>
-        </div>
-        <div class="mt-2 text-green-500 font-bold" id="arbResult">Checking...</div>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2 class="text-lg font-bold">ℹ️ What Is This?</h2>
-      <p class="text-sm text-gray-500 mt-1">
-        This tool compares the gold spot price with the GLD ETF price (which roughly represents 1/10th oz of gold).
-        If there's a significant price gap, it may indicate a short-term arbitrage opportunity to exploit.
-      </p>
-    </div>
-  </div>
-<div class="card">
-  <h2 class="text-lg font-bold mb-2">Commodities Arbitrage</h2>
+<div class="card mt-4">
+  <h2 class="text-lg font-bold mb-2">Live Commodities Arbitrage</h2>
   <div class="space-y-2 text-sm">
-    <p>🪙 Gold Spot Price: <span id="spotPrice">Loading...</span></p>
+    <p>🪙 Gold Spot Price: <span id="goldSpot">Loading...</span></p>
     <p>📈 GLD ETF Price: <span id="gldPrice">Loading...</span></p>
-    <p>💸 Arbitrage Opportunity: <span id="arbitrage">Calculating...</span></p>
+    <p>💰 Gold Arbitrage: <span id="goldArb">Calculating...</span></p>
+
+    <hr class="my-2" />
+
+    <p>🥈 Silver Spot Price: <span id="silverSpot">Loading...</span></p>
+    <p>📈 SLV ETF Price: <span id="slvPrice">Loading...</span></p>
+    <p>💰 Silver Arbitrage: <span id="silverArb">Calculating...</span></p>
+
+    <hr class="my-2" />
+
+    <p>🛢️ Oil Spot Price: <span id="oilSpot">Loading...</span></p>
+    <p>📈 USO ETF Price: <span id="usoPrice">Loading...</span></p>
+    <p>💰 Oil Arbitrage: <span id="oilArb">Calculating...</span></p>
   </div>
 </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
