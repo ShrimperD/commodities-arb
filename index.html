@@ -1,1 +1,29 @@
-ECHO is on.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Commodities Arbitrage</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🪙 Commodities Arbitrage Tracker</h1>
+    
+    <div class="card">
+      <h2>Live Prices</h2>
+      <p><strong>Gold Spot Price:</strong> <span id="spotPrice">Loading...</span></p>
+      <p><strong>GLD ETF Price:</strong> <span id="etfPrice">Loading...</span></p>
+    </div>
+
+    <div class="card">
+      <h2>Arbitrage Opportunity</h2>
+      <p id="arbResult">Checking...</p>
+    </div>
+
+    <button onclick="fetchPrices()">🔄 Refresh Prices</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
